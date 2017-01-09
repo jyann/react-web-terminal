@@ -1,0 +1,35 @@
+$font: monospace;
+$bg-color: #000;
+$color-primary: #fff;
+$color-secondary: #fff;
+$root-padding: 16px;
+
+@keyframes cursor-blink {
+  50% { background-color: $color-primary; }
+}
+
+.react-web-terminal {
+  height: calc(100% - (2 * #{$root-padding}));
+  width: calc(100% - (2 * #{$root-padding}));
+  padding: $root-padding;
+  background-color: $bg-color;
+  color: $color-primary;
+  font-family: $font;
+  overflow: scroll;
+  pre {
+    font-family: $font;
+    margin: 0;
+  }
+  .react-web-terminal-input {
+    white-space: nowrap;
+  }
+  &:focus {
+    .react-web-terminal-input {
+      .react-web-terminal-input-buffer {
+        .react-web-terminal-cursor {
+          animation: cursor-blink 1s linear infinite;
+        }
+      }
+    }
+  }
+}

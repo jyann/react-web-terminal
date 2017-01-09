@@ -1,0 +1,37 @@
+<html>
+<head>
+  <title>React Web Terminal Demo</title>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+    }
+    #main {
+      height: 100%;
+      width: 100%;
+    }
+    #main .react-web-terminal {
+      background-color: #004;
+    }
+  </style>
+</head>
+<body>
+  <div id="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+  <script src="dist/index.js"></script>
+  <script>
+    function commandHandler(component) {
+      component.output('Output: ' + component.input());
+    }
+
+    var webTerminalComp = ReactDOM.render(
+      React.createElement(WebTerminal, {commandHandler: commandHandler, prompt: '~> '}),
+      document.getElementById('main')
+    );
+
+    webTerminalComp.output('Welcome!');
+  </script>
+</body>
+</html>
