@@ -1,16 +1,16 @@
 import React from 'react/addons';
-import ReactWebTerminal from '../lib/react-web-terminal.jsx';
+import WebTerminal from '../lib/react-web-terminal.jsx';
 
-describe('ReactWebTerminal', function() {
+describe('WebTerminal', function() {
   var component;
 
   beforeEach(function() {
     component = React.addons.TestUtils.renderIntoDocument(
-      <ReactWebTerminal/>
+      <WebTerminal/>
     );
   });
 
   it('should render', function() {
-    expect(component.getDOMNode().className).toEqual('react-web-terminal');
+    expect(React.findDOMNode(component).className).toEqual('react-web-terminal');
   });
 });
