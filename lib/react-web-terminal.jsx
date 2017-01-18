@@ -5,6 +5,7 @@ import './react-web-terminal.scss';
 var nonCharKeys = ['Enter', 'Backspace', 'Tab', 'Shift', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape', 'Meta', 'Alt', 'Control', 'CapsLock'];
 
 export default class WebTerminal extends React.Component {
+  // TODO add inline styles so they can be changed dynamically
   constructor(props) {
     super(props);
 
@@ -14,11 +15,21 @@ export default class WebTerminal extends React.Component {
       input: '',
       cursorPos: 0,
       prompt: props.prompt ? props.prompt : '> ',
-      commandHandler: props.commandHandler ? props.commandHandler : component => component.output(component.input())
+      commandHandler: props.commandHandler ? props.commandHandler : component => component.output(component.input()),
+      style: {
+        reactWebTerminal: {},
+        reactWebTerminalInput: {},
+        reactWebTerminalInputBuffer: {},
+        reactWebTerminalCursor: {}
+      }
     };
   }
 
   componentDidMount() {}
+
+  componentDidUpdate() {
+    this.refs.root.scrollTop = this.refs.root.scrollHeight
+  }
 
   resetInputBuffer() {
     this.state.input = '';
@@ -99,10 +110,10 @@ export default class WebTerminal extends React.Component {
     });
 
     return (
-      <div tabIndex="-1" className="react-web-terminal" onKeyDown={this.handleKeyDown.bind(this)}>
+      <div tabIndex="-1" ref="root" className="react-web-terminal" onKeyDown={this.handleKeyDown.bind(this)} style={this.state.style.reactWebTerminal}>
         {logNodes}
-        <div className="react-web-terminal-input">
-          <pre>{this.state.prompt}<span className="react-web-terminal-input-buffer">{this.getPreCursorStr()}<span className="react-web-terminal-cursor">{this.getCursorChar()}</span>{this.getPostCursorStr()}</span></pre>
+        <div className="react-web-terminal-input" style={this.state.style.reactWebTerminalInput}>
+          <pre>{this.state.prompt}<span className="react-web-terminal-input-buffer" style={this.state.style.reactWebTerminalInputBuffer}>{this.getPreCursorStr()}<span className="react-web-terminal-cursor" style={this.state.style.reactWebTerminalCursor}>{this.getCursorChar()}</span>{this.getPostCursorStr()}</span></pre>
         </div>
       </div>
     );
