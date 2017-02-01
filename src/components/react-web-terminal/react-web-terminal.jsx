@@ -1,8 +1,6 @@
 import React from 'react';
-import nl2br from 'react-nl2br';
-import './react-web-terminal.scss';
 
-var nonCharKeys = ['Enter', 'Backspace', 'Tab', 'Shift', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape', 'Meta', 'Alt', 'Control', 'CapsLock'];
+const nonCharKeys = ['Enter', 'Backspace', 'Tab', 'Shift', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape', 'Meta', 'Alt', 'Control', 'CapsLock'];
 
 export default class WebTerminal extends React.Component {
   // TODO add inline styles so they can be changed dynamically
@@ -104,7 +102,7 @@ export default class WebTerminal extends React.Component {
     var logNodes = this.state.log.map(function(item) {
       return (
         <div key={item.id} className={item.class}>
-          <pre>{nl2br(item.text)}</pre>
+          <pre>{item.text}</pre>
         </div>
       );
     });
