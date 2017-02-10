@@ -3,5 +3,4 @@ src
 .babelrc
 index.html
 webpack.config.js
-spec
-karma.conf.js
+*.log
