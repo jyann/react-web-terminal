@@ -1,6 +1,8 @@
 import React from 'react';
 
-const nonCharKeys = ['Enter', 'Backspace', 'Tab', 'Shift', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape', 'Meta', 'Alt', 'Control', 'CapsLock'];
+import {getKey} from './key-prop-support';
+
+const nonCharKeys = ['Backspace', 'Tab', 'Clear', 'Enter', 'Shift', 'Control', 'Alt', 'CapsLock', 'Escape', 'PageUp', 'PageDown', 'End', 'Home', 'Delete', 'Meta', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19'];
 
 export default class WebTerminal extends React.Component {
   // TODO add inline styles so they can be changed dynamically
@@ -64,22 +66,22 @@ export default class WebTerminal extends React.Component {
   }
 
   handleKeyDown(e) {
-    // TODO cross browser support
-    if (e.key === 'Enter') {
+    const key = getKey(e);
+    if (key === 'Enter') {
       this.onCommandEntered();
-    } else if (e.key === 'Backspace') {
+    } else if (key === 'Backspace') {
       let newPreCursorStr = this.getPreCursorStr().slice(0, this.getPreCursorStr().length - 1);
       this.state.input = newPreCursorStr + this.state.input.charAt(this.state.cursorPos) + this.getPostCursorStr();
       if (this.state.cursorPos > 0) this.state.cursorPos--;
       this.setState(this.state);
-    } else if (e.key === 'ArrowLeft') {
+    } else if (key === 'ArrowLeft') {
       if (this.state.cursorPos > 0) this.state.cursorPos--;
       this.setState(this.state);
-    } else if (e.key === 'ArrowRight') {
+    } else if (key === 'ArrowRight') {
       if (this.state.cursorPos < this.state.input.length) this.state.cursorPos++;
       this.setState(this.state);
-    } else if (nonCharKeys.indexOf(e.key) === -1) {
-      this.state.input = this.getPreCursorStr() + e.key + this.state.input.charAt(this.state.cursorPos) + this.getPostCursorStr();
+    } else if (nonCharKeys.indexOf(key) === -1) {
+      this.state.input = this.getPreCursorStr() + key + this.state.input.charAt(this.state.cursorPos) + this.getPostCursorStr();
       this.state.cursorPos++;
       this.setState(this.state);
     }
