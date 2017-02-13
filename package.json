@@ -1,10 +1,10 @@
 {
   "name": "react-web-terminal",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A web-based terminal facade built on reactjs",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/jyann/react-web-terminal.git"
+    "type": "git",
+    "url": "https://github.com/jyann/react-web-terminal.git"
   },
   "main": "dist/js/react-web-terminal/react-web-terminal.js",
   "scripts": {
