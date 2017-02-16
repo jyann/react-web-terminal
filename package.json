@@ -1,6 +1,6 @@
 {
   "name": "react-web-terminal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A web-based terminal facade built on reactjs",
   "repository": {
     "type": "git",
