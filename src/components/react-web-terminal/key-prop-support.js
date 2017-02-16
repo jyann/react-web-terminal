@@ -18,6 +18,10 @@ const keymap = {
     34: ['PageDown', 'PageDown'],
     35: ['End', 'End'],
     36: ['Home', 'Home'],
+    37: ['ArrowLeft', 'ArrowLeft'],
+    38: ['ArrowUp', 'ArrowUp'],
+    39: ['ArrowRight', 'ArrowRight'],
+    40: ['ArrowDown', 'ArrowDown'],
 
     46: ['Delete', 'Delete'],
 
