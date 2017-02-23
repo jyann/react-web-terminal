@@ -13,12 +13,18 @@ export default class WebTerminalInputBuffer extends React.Component {
   }
 
   getInput() {
-      return this.state.input;
+    return this.state.input;
   }
 
   resetInputBuffer() {
     this.state.input = '';
     this.cursor.moveToBegining();
+  }
+
+  insertText(text) {
+    this.state.input = this.getPreCursorStr() + text + this.cursor.getCursorChar() + this.getPostCursorStr();
+    this.cursor.moveRight(text.length);
+    this.setState(this.state);
   }
 
   handleKeyDown(e) {
@@ -36,11 +42,22 @@ export default class WebTerminalInputBuffer extends React.Component {
     } else if (key === 'ArrowRight') {
       this.cursor.moveRight();
       this.forceUpdate();
+    } else if (navigator.appVersion.indexOf('Mac') !== -1 && e.metaKey && key === 'c') {
+      return;
+    } else if (navigator.appVersion.indexOf('Mac') !== -1 && e.metaKey && key === 'v') {
+      return;
+    } else if (e.ctrlKey && key === 'c') {
+      return;
+    } else if (e.ctrlKey && key === 'v') {
+      return;
     } else if (nonPrintableKeys.indexOf(key) === -1) {
-      this.state.input = this.getPreCursorStr() + key + this.cursor.getCursorChar() + this.getPostCursorStr();
-      this.cursor.moveRight();
-      this.setState(this.state);
+      this.insertText(key);
     }
+  }
+
+  onPaste(e) {
+    const pastedText = e.clipboardData.getData('Text');
+    this.insertText(pastedText);
   }
 
   onCommandEntered() {

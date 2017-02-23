@@ -54,6 +54,10 @@ export default class WebTerminal extends React.Component {
     if (!this.keyStrokeMapHandler(e)) this.inputComp.handleKeyDown(e);
   }
 
+  onPaste(e) {
+    this.inputComp.onPaste(e);
+  }
+
   onCommandEntered() {
     this.addToLog(this.inputComp.state.prompt + this.input(), 'react-web-terminal-input');
 
@@ -82,7 +86,7 @@ export default class WebTerminal extends React.Component {
     });
 
     return (
-      <div tabIndex="-1" ref={(root) => { this.root = root }} className="react-web-terminal" onKeyDown={this.handleKeyDown.bind(this)}>
+      <div tabIndex="-1" ref={(root) => { this.root = root }} className="react-web-terminal" onKeyDown={this.handleKeyDown.bind(this)} onPaste={this.onPaste.bind(this)}>
         {logNodes}
         <WebTerminalInput ref={(input) => { this.inputComp = input }} prompt={this.props.prompt} onCommandEntered={this.onCommandEntered.bind(this)} />
       </div>

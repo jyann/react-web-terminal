@@ -22,14 +22,14 @@ export default class WebTerminalCursor extends React.Component {
       this.setState(this.state);
     }
 
-    moveLeft() {
+    moveLeft(amount = 1) {
       if (this.state.cursorPos > 0)
-        this.setCursorPos(this.getCursorPos() - 1);
+        this.setCursorPos(this.getCursorPos() - amount);
     }
 
-    moveRight() {
+    moveRight(amount = 1) {
       if (this.state.cursorPos < this.getInput().length)
-        this.setCursorPos(this.getCursorPos() + 1);
+        this.setCursorPos(this.getCursorPos() + amount);
     }
 
     moveToBegining() {

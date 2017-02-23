@@ -23,6 +23,10 @@ export default class WebTerminalInput extends React.Component {
     this.buffer.handleKeyDown(e);
   }
 
+  onPaste(e) {
+    this.buffer.onPaste(e);
+  }
+
   onCommandEntered() {
     if (this.props.onCommandEntered) this.props.onCommandEntered();
   }
