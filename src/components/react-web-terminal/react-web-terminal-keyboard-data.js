@@ -106,11 +106,27 @@ const keymap = {
 };
 
 export function getKey(e) {
+    let key = '';
     if (e.key && e.key !== 'Unidentified') {
-        return e.key;
+        key = e.key;
     } else {
-        return e.shiftKey ? keymap[e.which][1] : keymap[e.which][0];
+        key = e.shiftKey ? keymap[e.which][1] : keymap[e.which][0];
     }
+    return key;
+}
+
+export function getKeyStroke(e) {
+    const keyTemp = getKey(e);
+    const key = keyTemp === ' ' ? 'Space' : keyTemp;
+
+    let keyStroke = [];
+    if (e.ctrlKey || key === 'Control') keyStroke.push('Control');
+    if (e.altKey || key === 'Alt') keyStroke.push('Alt');
+    if (e.metaKey || key === 'Meta') keyStroke.push('Meta');
+    if (e.shiftKey || key === 'Shift') keyStroke.push('Shift');
+    if (keyStroke.indexOf(key) === -1) keyStroke.push(key);
+
+    return keyStroke.join('+');
 }
 
 export const nonPrintableKeys = [

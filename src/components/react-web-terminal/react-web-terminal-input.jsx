@@ -7,7 +7,7 @@ export default class WebTerminalInput extends React.Component {
     super(props);
 
     this.state = {
-      prompt: props.prompt ? props.prompt : '> ',
+      prompt: props.prompt ? props.prompt : '> '
     };
   }
 

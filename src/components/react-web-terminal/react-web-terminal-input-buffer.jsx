@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getKey, nonPrintableKeys} from './key-prop-support';
+import {getKey, nonPrintableKeys} from './react-web-terminal-keyboard-data';
 import WebTerminalCursor from './react-web-terminal-cursor.jsx';
 
 export default class WebTerminalInputBuffer extends React.Component {

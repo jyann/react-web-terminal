@@ -27,7 +27,13 @@
     }
 
     var webTerminalComp = ReactDOM.render(
-      React.createElement(WebTerminal, {commandHandler: commandHandler, prompt: '~> '}),
+      React.createElement(WebTerminal, {
+          commandHandler: commandHandler,
+          prompt: '~> ',
+          keyStrokeMap: {
+            'Control+Space': commandHandler
+          }
+      }),
       document.getElementById('main')
     );
 

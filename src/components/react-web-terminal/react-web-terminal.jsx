@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getKey} from './key-prop-support';
+import {getKeyStroke} from './react-web-terminal-keyboard-data';
 import WebTerminalInput from './react-web-terminal-input.jsx';
 
 export default class WebTerminal extends React.Component {
@@ -12,6 +12,7 @@ export default class WebTerminal extends React.Component {
       log: [],
       logId: 0,
       commandHandler: props.commandHandler ? props.commandHandler : (component) => { component.output(component.input()) },
+      keyStrokeMap: props.keyStrokeMap || {},
       style: {
         reactWebTerminal: {},
         reactWebTerminalInput: {},
@@ -50,7 +51,7 @@ export default class WebTerminal extends React.Component {
   }
 
   handleKeyDown(e) {
-    this.inputComp.handleKeyDown(e);
+    if (!this.keyStrokeMapHandler(e)) this.inputComp.handleKeyDown(e);
   }
 
   onCommandEntered() {
@@ -61,6 +62,14 @@ export default class WebTerminal extends React.Component {
     this.resetInputBuffer();
 
     this.setState(this.state);
+  }
+
+  keyStrokeMapHandler(e) {
+    const keyStroke = getKeyStroke(e);
+    if (keyStroke in this.state.keyStrokeMap)
+      return this.state.keyStrokeMap[keyStroke](this) !== false ? true : false;
+    else
+      return false;
   }
 
   render() {
