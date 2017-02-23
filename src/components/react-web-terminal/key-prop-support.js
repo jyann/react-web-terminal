@@ -112,3 +112,8 @@ export function getKey(e) {
         return e.shiftKey ? keymap[e.which][1] : keymap[e.which][0];
     }
 }
+
+export const nonPrintableKeys = [
+    'Backspace', 'Tab', 'Clear', 'Enter', 'Shift', 'Control', 'Alt', 'CapsLock', 'Escape', 'PageUp', 'PageDown', 'End', 'Home', 'ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'Delete', 'Meta',
+    'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19'
+];
