@@ -42,15 +42,7 @@ export default class WebTerminalInputBuffer extends React.Component {
     } else if (key === 'ArrowRight') {
       this.cursor.moveRight();
       this.forceUpdate();
-    } else if (navigator.appVersion.indexOf('Mac') !== -1 && e.metaKey && key === 'c') {
-      return;
-    } else if (navigator.appVersion.indexOf('Mac') !== -1 && e.metaKey && key === 'v') {
-      return;
-    } else if (e.ctrlKey && key === 'c') {
-      return;
-    } else if (e.ctrlKey && key === 'v') {
-      return;
-    } else if (nonPrintableKeys.indexOf(key) === -1) {
+    } else if (nonPrintableKeys.indexOf(key) === -1 && !e.altKey && !e.ctrlKey && !e.metaKey) {
       this.insertText(key);
     }
   }
