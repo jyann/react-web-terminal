@@ -5,6 +5,9 @@ import WebTerminalInput from './react-web-terminal-input.jsx';
 
 export default class WebTerminal extends React.Component {
   // TODO add inline styles so they can be changed dynamically
+  // TODO add ability to disable/enable input buffer
+  // TODO add ajax call function that disables input then re-enables after callback runs
+  // TODO unicode support
   constructor(props) {
     super(props);
 
