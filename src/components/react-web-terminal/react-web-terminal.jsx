@@ -14,7 +14,7 @@ export default class WebTerminal extends React.Component {
     this.state = {
       log: [],
       logId: 0,
-      commandHandler: props.commandHandler ? props.commandHandler : (component) => { component.output(component.input()) },
+      commandHandler: props.commandHandler ? props.commandHandler : component => component.output(component.input()),
       keyStrokeMap: props.keyStrokeMap || {},
       style: {
         reactWebTerminal: {},
@@ -46,8 +46,6 @@ export default class WebTerminal extends React.Component {
   }
 
   output(output) {
-    this.addToLog(this.inputComp.state.prompt + this.input(), 'react-web-terminal-input');
-
     this.addToLog(output, 'react-web-terminal-output');
 
     this.resetInputBuffer();
@@ -68,6 +66,7 @@ export default class WebTerminal extends React.Component {
   }
 
   onCommandEntered() {
+    this.addToLog(this.inputComp.state.prompt + this.input(), 'react-web-terminal-input');
     this.state.commandHandler(this);
   }
 
